@@ -18,8 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if data.get('username') == 'me':
-            raise serializers.ValidationError(
-                'Username указан неверно!')
+            raise serializers.ValidationError('Username is incorrect!')
         return data
 
     def create(self, validated_data):
@@ -27,9 +26,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class ReadUserSerializer(serializers.ModelSerializer):
-    '''Добавлен сериализатор на чтение для красивого отображения работы апи
-    в редоке, можно было бы реализовать через словарь initial_data -
-    но оставил такое решение'''
+    '''
+    Added a serializer for read-only usage for better API display
+    in Redoc, it could be done using the initial_data dictionary -
+    but I kept this solution.
+    '''
+
     class Meta:
         model = User
         fields = (
@@ -48,8 +50,11 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 
 class ReadArticleSerializer(serializers.ModelSerializer):
-    '''Как и в примере с юзерами, добавил сериалайзер только для чтения
-    для более читабельного отображения в апи авторов'''
+    '''
+    As with the user example, I added a serializer for read-only usage
+    for a more readable API display of authors.
+    '''
+
     author = ReadUserSerializer(read_only=True)
 
     class Meta:

@@ -11,22 +11,22 @@ router_api = routers.DefaultRouter()
 
 router_api.register('articles', ArticleViewSet)
 router_api.register(
-    # эндпоинт для создания комментариев к выбранной статье
+    # Endpoint for creating comments on a selected article
     r'^articles/(?P<article_id>\d+)/comments',
     ArticleCommentViewSet,
     basename='article_comments'
 )
 router_api.register(
-    # эндпоинт для создания комментариев к выбранному комментарию
+    # Endpoint for creating comments on a selected comment
     r'^articles/(?P<article_id>\d+)/comments/(?P<comment_id>\d+)/nested',
     CommentViewSet,
     basename='nested_comments'
 )
-# эндпоинт для регистрации пользователей и их отображения на фронте
+# Endpoint for user registration and display on the frontend
 router_api.register('users', UserViewSet)
 
 urlpatterns = [
-    # стандартные эндпоинты djoser для работы с токенами
+    # Default djoser endpoints for working with tokens
     path('auth/token/login/', TokenCreateView.as_view(), name='token_login'),
     path(
         'auth/token/logout/', TokenDestroyView.as_view(), name='token_logout'

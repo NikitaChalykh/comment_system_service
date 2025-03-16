@@ -1,26 +1,26 @@
-Сервис для управления статьями и комментариями
+Comment management system with support for nested discussions
 =====
 
-Описание проекта
+Project description
 ----------
 
-Проект представляет собой cистемe управления статьями и комментариями с поддержкой вложенных обсуждений. API поддерживает операции добавления и получения комментариев к статьям и другим комментариям, а также позволяет получать древовидную структуру комментариев.
+The project is a system for managing articles and comments with support for nested discussions. The API supports operations for adding and getting comments to articles and other comments, and also allows you to get a tree structure of comments.
 
-Проект разворачивается в трех Docker контейнерах: web-приложение, postgresql-база данных и nginx-сервер.
+The project is deployed in three Docker containers: a web application, a postgresql database, and an nginx server.
 
-В проекте реализована аутентификация на базе токенов, настроена админка.
+The project has token-based authentication, and an admin panel has been configured.
 
-Настроены пермишены и пагинации для эндпоинтов. 
+Permissions and pagination for endpoints have been configured.
 
-Приготовлены фикстуры для звполнения БД тестовыми данными (пароль и никнейм админа в фикстурах БД - ```admin```).
+Fixtures have been prepared for filling the database with test data (the password and nickname of the admin in the database fixtures are ```admin```).
 
-Системные требования
+System requirements
 ----------
 * Python 3.8+
 * Docker
 * Works on Linux
 
-Стек технологий
+Tech stack
 ----------
 * Python 3.8+
 * Django 3.1
@@ -30,39 +30,40 @@
 * gunicorn
 * Docker, Docker Compose
 
-Установка проекта из репозитория
+Installing the project from the repository
 ----------
-1. Клонирование репозитория:
-```bash 
+1. Cloning the repository:
+```bash
 git clone git@github.com:NikitaChalykh/comment_system_service.git
 
 cd comment_system_service
 ```
 
-2. Создайте файл ```.env``` используя ```env.example``` в качестве шаблона в папке infra
+2. Create a ```.env``` file using ```env.example``` as a template in the infra folder
 
-3. Установка и запуск приложения в контейнерах:
-```bash 
-docker-compose up -d
+3. Installing and running the application in containers:
+```bash
+docker compose up -d
 ```
 
-4. Запуск миграций, сбор статики и загрузка фикстур:
-```bash 
-docker-compose exec web python manage.py migrate
+4. Run migrations, collect statics and load fixtures:
+```bash
 
-docker-compose exec web python manage.py collectstatic --no-input 
+docker compose exec web python manage.py migrate
 
-docker-compose exec web python manage.py loaddata fixtures.json
+docker compose exec web python manage.py collectstatic --no-input
+
+docker compose exec web python manage.py loaddata fixtures.json
 ```
 
-Работа с проектом
+Working with the project
 ----------
-Документация по работе API сервиса:
+Documentation on the API service:
 
 ```http://127.0.0.1/redoc/```
 
 ```http://127.0.0.1/swagger/```
 
-Админка сервиса:
+Service admin panel:
 
 ```http://127.0.0.1/admin/```

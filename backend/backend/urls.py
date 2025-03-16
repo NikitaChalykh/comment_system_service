@@ -9,7 +9,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Articles API",
         default_version='v1',
-        description="Документация для тестового задания компании Квартирка",
+        description="Comment management system with support for nested discussions",
         contact=openapi.Contact(email="Wizardus@list.ru"),
         license=openapi.License(name="BSD License"),
     ),

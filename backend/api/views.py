@@ -55,9 +55,11 @@ class ArticleCommentViewSet(
     mixins.ListModelMixin,
     viewsets.GenericViewSet
 ):
-    '''list метод выдаст кверисет из всех комментариев к статье
-    (включая все вложенные),
-    create метод создает комментарий к статье'''
+    '''
+    The list method will return a queryset of all comments to an article
+    (including all nested comments),
+    the create method creates a comment for the article.
+    '''
 
     queryset = Comment.objects.select_related(
         'author',
@@ -98,9 +100,11 @@ class ArticleCommentViewSet(
 
 
 class CommentViewSet(ArticleCommentViewSet):
-    '''list метод выдаст кверисет из всех вложенных комментариев
-    для конкретного комментария,
-    create метод создает комментарий к комментарию'''
+    '''
+    The list method will return a queryset of all nested comments
+    for a specific comment,
+    the create method creates a comment on the comment.
+    '''
 
     def get_queryset(self):
         comment_id = self.kwargs.get('comment_id')
